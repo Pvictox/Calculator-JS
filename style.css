@@ -16,6 +16,8 @@
     width: auto;
     height: 50px;
     background-color: rgb(24, 72, 27);
+    color: azure;
+    font-size: 25px;
 }
 
 #calc-pad{
