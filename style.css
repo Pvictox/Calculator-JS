@@ -20,6 +20,17 @@
     font-size: 25px;
 }
 
+#visor-text{
+    margin-top: 20px;
+    font-size: 25px;
+}
+
+#visor-cur-exp{
+    font-size: 15px;
+    margin-bottom: -15px;
+    color: black;
+}
+
 #calc-pad{
     display: flex;
     flex-direction: row;
