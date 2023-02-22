@@ -21,19 +21,39 @@
 }
 
 #calc-pad{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+#calc-pad-number{
     border: 3px solid blue;
     display: flex;
     flex-wrap: wrap;
     width: 90%;
     align-self: center;
-    margin-top: 20px;
     flex-direction: row;
 }
 
-.number{
+#calc-pad-operations{
+    margin-left: 5px;
+    width: 45px;
+    border: 3px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.number, #equals{
     width: 50px;
     height: 50px;
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 5px;
+}
+
+.operation{
+    width: 30px;
+    height: 20px;
 }
