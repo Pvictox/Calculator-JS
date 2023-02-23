@@ -7,6 +7,7 @@ const visorCurrentExp = document.querySelector("#visor-cur-exp");
 let firstValue = undefined;
 let lastValue = undefined;
 let operator = undefined;
+let unaryFlag = false;
 
 const listOperators = ['+', '-', '*', '/'];
 
@@ -79,6 +80,10 @@ operators.forEach((button) => {
     button.addEventListener('click', ()=>{
         if (firstValue === undefined && calcVisor.textContent !== ""){
             firstValue = +calcVisor.textContent;
+            if (unaryFlag){
+                if (visorCurrentExp.textContent[0] === "-") {firstValue *= -1;} 
+                unaryFlag=false;
+            }
             buildCurrentExp(firstValue);
             buildCurrentExp(button.textContent);
             buildExpVisor("");
@@ -93,6 +98,11 @@ operators.forEach((button) => {
         }else if (firstValue !== undefined){
             operator = button.id;
             buildCurrentExp(button.textContent);
+        }else if (firstValue === undefined && calcVisor.textContent === ""){
+            if (button.id === "plus" || button.id === "minus"){
+                buildCurrentExp(button.textContent);
+                unaryFlag = true;
+            }
         }
     });
 })
