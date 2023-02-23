@@ -8,6 +8,23 @@ let firstValue = undefined;
 let lastValue = undefined;
 let operator = undefined;
 
+const listOperators = ['+', '-', '*', '/'];
+
+let isOperator = (value) => {
+    result = listOperators.filter((op) => {
+        if (op === value){
+            return true;
+        }
+    });
+
+    if (result.length > 0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
 //Função responsável por modificar o visor.
 let buildExpVisor = (currentValue) =>{
     if (currentValue !== ""){
@@ -22,7 +39,11 @@ let buildCurrentExp = (value) => {
     if (value === ""){
         visorCurrentExp.textContent = "";
     }
-    visorCurrentExp.textContent += value;
+    if (isOperator(visorCurrentExp.textContent[visorCurrentExp.textContent.length-1]) === false){
+        visorCurrentExp.textContent += value;
+    }else{
+        visorCurrentExp.textContent = visorCurrentExp.textContent.replace(visorCurrentExp.textContent[visorCurrentExp.textContent.length-1], value);
+    }
 }
 
 let plus = (value1, value2) => {return value1+value2}
@@ -56,7 +77,6 @@ numbersButtons.forEach( (button) => {
 
 operators.forEach((button) => {
     button.addEventListener('click', ()=>{
-        console.log(`current operator: ${operator}`);
         if (firstValue === undefined && calcVisor.textContent !== ""){
             firstValue = +calcVisor.textContent;
             buildCurrentExp(firstValue);
@@ -71,9 +91,8 @@ operators.forEach((button) => {
             operator = button.id;
         }else if (firstValue !== undefined){
             buildCurrentExp(button.textContent);
+            operator = button.id;
         }
-        console.log(`First: ${firstValue}`);
-        console.log(`Last: ${lastValue}`);
     });
 })
 
