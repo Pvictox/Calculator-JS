@@ -89,9 +89,10 @@ operators.forEach((button) => {
             buildCurrentExp(button.textContent);
             calcResult();
             operator = button.id;
-        }else if (firstValue !== undefined){
             buildCurrentExp(button.textContent);
+        }else if (firstValue !== undefined){
             operator = button.id;
+            buildCurrentExp(button.textContent);
         }
     });
 })
