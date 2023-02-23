@@ -26,6 +26,7 @@ let buildCurrentExp = (value) => {
 }
 
 let plus = (value1, value2) => {return value1+value2}
+let minus = (value1, value2) => {return value1-value2}
 
 let calcResult = () =>{
     if (firstValue !== undefined && lastValue !== undefined && operator !== undefined){
@@ -34,8 +35,15 @@ let calcResult = () =>{
             buildCurrentExp(plus(firstValue, lastValue));
             firstValue = +visorCurrentExp.textContent;
             lastValue = undefined;
+            operator = undefined;
             buildExpVisor("");
-            console.log(`Result: ${firstValue}`);
+        }else if (operator === "minus"){
+            buildCurrentExp("");
+            buildCurrentExp(minus(firstValue, lastValue));
+            firstValue = +visorCurrentExp.textContent;
+            lastValue = undefined;
+            operator = undefined;
+            buildExpVisor("");
         }
     }
 }
@@ -48,17 +56,19 @@ numbersButtons.forEach( (button) => {
 
 operators.forEach((button) => {
     button.addEventListener('click', ()=>{
-        operator = button.id;
+        console.log(`current operator: ${operator}`);
         if (firstValue === undefined && calcVisor.textContent !== ""){
             firstValue = +calcVisor.textContent;
             buildCurrentExp(firstValue);
             buildCurrentExp(button.textContent);
             buildExpVisor("");
+            operator = button.id;
         }else if (firstValue !== undefined && calcVisor.textContent !==""){
             lastValue = +calcVisor.textContent; 
             buildCurrentExp(lastValue);
             buildCurrentExp(button.textContent);
             calcResult();
+            operator = button.id;
         }else if (firstValue !== undefined){
             buildCurrentExp(button.textContent);
         }
