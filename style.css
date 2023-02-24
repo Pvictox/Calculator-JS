@@ -34,7 +34,7 @@
 #calc-pad{
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 #calc-pad-number{
@@ -67,4 +67,18 @@
 .operation{
     width: 30px;
     height: 20px;
+}
+
+#calc-pad-special{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 3px solid violet;
+    margin-bottom: 0px;
+    width: 90%;
+    height: 35px;
+}
+
+.special-operations{
+    
 }
