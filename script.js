@@ -89,7 +89,6 @@ let calcResult = () =>{
             }else{
                 firstValue = undefined;
             }
-            console.log(firstValue);
             lastValue = undefined;
             operator = undefined;
             buildExpVisor("");
