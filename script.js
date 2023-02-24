@@ -53,6 +53,9 @@ let buildCurrentExp = (value) => {
 let plus = (value1, value2) => {return value1+value2}
 let minus = (value1, value2) => {return value1-value2}
 let times = (value1, value2) => {return value1 * value2};
+let divide = (value1, value2) => {
+    return ( value2 === 0 ? "Error" : value1/value2);
+}
 
 //refatorar depois
 let calcResult = () =>{
@@ -78,6 +81,18 @@ let calcResult = () =>{
             lastValue = undefined;
             operator = undefined;
             buildExpVisor("");
+        }else if (operator === "divide"){
+            buildCurrentExp("");
+            buildCurrentExp(divide(firstValue, lastValue));
+            if (divide(firstValue, lastValue) !== "Error"){
+                firstValue = +visorCurrentExp.textContent;
+            }else{
+                firstValue = undefined;
+            }
+            console.log(firstValue);
+            lastValue = undefined;
+            operator = undefined;
+            buildExpVisor("");
         }
     }
 }
@@ -96,6 +111,9 @@ numbersButtons.forEach( (button) => {
 // refatorar depois 
 operators.forEach((button) => {
     button.addEventListener('click', ()=>{
+        if (visorCurrentExp.textContent === "Error"){
+            buildCurrentExp("");
+        }
         if (firstValue === undefined && calcVisor.textContent !== ""){
             firstValue = +calcVisor.textContent;
             if (unaryFlag){
@@ -116,7 +134,7 @@ operators.forEach((button) => {
         }else if (firstValue !== undefined){
             operator = button.id;
             buildCurrentExp(button.textContent);
-        }else if (firstValue === undefined && calcVisor.textContent === ""){
+        }else if (firstValue === undefined && calcVisor.textContent === "" && visorCurrentExp.textContent !== "Error"){
             if (button.id === "plus" || button.id === "minus"){
                 buildCurrentExp(button.textContent);
                 unaryFlag = true;
