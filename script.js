@@ -49,9 +49,12 @@ let buildCurrentExp = (value) => {
     }
 }
 
+// refatorar depois 
 let plus = (value1, value2) => {return value1+value2}
 let minus = (value1, value2) => {return value1-value2}
+let times = (value1, value2) => {return value1 * value2};
 
+//refatorar depois
 let calcResult = () =>{
     if (firstValue !== undefined && lastValue !== undefined && operator !== undefined){
         if (operator === "plus"){
@@ -64,6 +67,13 @@ let calcResult = () =>{
         }else if (operator === "minus"){
             buildCurrentExp("");
             buildCurrentExp(minus(firstValue, lastValue));
+            firstValue = +visorCurrentExp.textContent;
+            lastValue = undefined;
+            operator = undefined;
+            buildExpVisor("");
+        }else if (operator === "times"){
+            buildCurrentExp("");
+            buildCurrentExp(times(firstValue, lastValue));
             firstValue = +visorCurrentExp.textContent;
             lastValue = undefined;
             operator = undefined;
@@ -82,6 +92,8 @@ numbersButtons.forEach( (button) => {
     })
 })
 
+
+// refatorar depois 
 operators.forEach((button) => {
     button.addEventListener('click', ()=>{
         if (firstValue === undefined && calcVisor.textContent !== ""){
