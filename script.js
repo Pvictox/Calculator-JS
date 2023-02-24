@@ -36,6 +36,8 @@ let buildExpVisor = (currentValue) =>{
     calcVisor.textContent += currentValue;
 }
 
+
+
 let buildCurrentExp = (value) => {
     if (value === ""){
         visorCurrentExp.textContent = "";
@@ -72,6 +74,10 @@ let calcResult = () =>{
 
 numbersButtons.forEach( (button) => {
     button.addEventListener('click', (e)=>{
+        if (firstValue !== undefined && operator === undefined){
+            buildCurrentExp("");
+            firstValue = undefined;
+        }
         buildExpVisor(button.id);
     })
 })
