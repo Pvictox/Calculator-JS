@@ -56,7 +56,7 @@
     align-items: center;
 }
 
-.number, #equals{
+.number, #equals, #float-point{
     width: 50px;
     height: 50px;
     margin-left: 10px;
