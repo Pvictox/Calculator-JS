@@ -4,7 +4,7 @@ const operators = document.querySelectorAll(".operation")
 const calcVisor = document.querySelector("#visor-text");
 const visorCurrentExp = document.querySelector("#visor-cur-exp");
 const clearAllButton = document.querySelector("#clear-all");
-
+const clearEntryButton = document.querySelector("#clear-entry");
 
 let firstValue = undefined;
 let lastValue = undefined;
@@ -159,4 +159,8 @@ equals.addEventListener('click', ()=>{
 
 clearAllButton.addEventListener('click', ()=>{
     clearAll();
-});
+})
+
+clearEntryButton.addEventListener('click', () => {
+    calcVisor.textContent = calcVisor.textContent.replace(calcVisor.textContent[calcVisor.textContent.length-1], "");
+})
