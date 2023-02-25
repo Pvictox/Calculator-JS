@@ -3,6 +3,8 @@ const equals = document.querySelector("#equals");
 const operators = document.querySelectorAll(".operation")
 const calcVisor = document.querySelector("#visor-text");
 const visorCurrentExp = document.querySelector("#visor-cur-exp");
+const clearAllButton = document.querySelector("#clear-all");
+
 
 let firstValue = undefined;
 let lastValue = undefined;
@@ -36,7 +38,13 @@ let buildExpVisor = (currentValue) =>{
     calcVisor.textContent += currentValue;
 }
 
-
+let clearAll = () =>{
+    buildCurrentExp("");
+    buildExpVisor("");
+    firstValue = undefined;
+    lastValue = undefined;
+    operator = undefined;
+}
 
 let buildCurrentExp = (value) => {
     if (value === ""){
@@ -148,3 +156,7 @@ equals.addEventListener('click', ()=>{
         calcResult();
     }
 })
+
+clearAllButton.addEventListener('click', ()=>{
+    clearAll();
+});
