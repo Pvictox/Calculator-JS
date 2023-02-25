@@ -4,20 +4,70 @@
     box-sizing: border-box;
 }
 
+:root{
+    --background-calculator: rgba(206, 194, 194, 0.623);
+    --visor-background:  rgb(24, 72, 27);
+}
+
+body{
+    background-color: rgba(65, 127, 149, 0.664);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #calculator{
     border: 3px solid red;
+    background-color: var(--background-calculator);
     display: flex;
     flex-direction: column;
-    width: 45%;
-    height: 300px;
+    margin-top: 25vh;
+    width: 450px;
+    min-width: none;
+    height: auto;
+}
+
+#visor-cur-exp, #current-exp-container{
+    font-size: 20px;
+}
+
+.label-visor{
+    background-color:var(--background-calculator);
+}
+
+#current-exp-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-end;
+    width: 35%;
+    margin-top: 20px;
+    margin-bottom: 2px;
+    margin-right: 15px;
+}
+
+#current-exp{
+    background-color: var(--visor-background);
+    width: 100%;
+    height: 20px;
+}
+
+#visor-cur-exp{
+    margin-left: 5px;
+    margin-top: 0px;
+    height: auto;
+    margin-bottom: 0px;
+    color: black;
 }
 
 #visor{
     width: auto;
     height: 50px;
-    background-color: rgb(24, 72, 27);
+    background-color: var(--visor-background);
     color: azure;
     font-size: 25px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 #visor-text{
@@ -25,11 +75,6 @@
     font-size: 25px;
 }
 
-#visor-cur-exp{
-    font-size: 15px;
-    margin-bottom: -15px;
-    color: black;
-}
 
 #calc-pad{
     display: flex;
