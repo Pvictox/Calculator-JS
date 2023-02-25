@@ -5,7 +5,7 @@
 }
 
 :root{
-    --background-calculator: rgba(206, 194, 194, 0.623);
+    --background-calculator: #aaa;
     --visor-background:  rgb(24, 72, 27);
 }
 
@@ -23,6 +23,7 @@ body{
     background-color: var(--background-calculator);
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-top: 25vh;
     width: 450px;
     min-width: none;
@@ -51,7 +52,7 @@ body{
     width: 45%;
     margin-top: 20px;
     margin-bottom: 2px;
-    margin-right: 10px;
+    margin-right: 32px;
 }
 
 #current-exp{
@@ -68,7 +69,7 @@ body{
 }
 
 #visor{
-    width: auto;
+    width: 380px;
     height: 50px;
     background-color: var(--visor-background);
     color: azure;
@@ -90,12 +91,13 @@ body{
 }
 
 #calc-pad-number{
-    border: 3px solid blue;
+    border: 2px solid blue;
     display: flex;
-    flex-wrap: wrap;
-    width: 90%;
+    flex-wrap: wrap-reverse;
+    width: 300px;
+    gap: 3px;
     align-self: center;
-    flex-direction: row;
+    max-width: 100%;
 }
 
 #calc-pad-operations{
@@ -127,10 +129,11 @@ body{
     justify-content: space-evenly;
     border: 3px solid violet;
     margin-bottom: 0px;
-    width: 90%;
+    width: 300px;
     height: 35px;
 }
 
 .special-operations{
-    
+    height: auto;  
+    width: 140px; 
 }
