@@ -29,10 +29,12 @@ body{
 
 #visor-cur-exp, #current-exp-container{
     font-size: 20px;
+    text-align: center;
 }
 
 .label-visor{
     background-color:var(--background-calculator);
+    margin-right: 4px;
 }
 
 #current-exp-container{
@@ -40,10 +42,14 @@ body{
     flex-direction: row;
     align-items: center;
     align-self: flex-end;
-    width: 35%;
+    border: 3px solid rgb(100 43 14 / 68%);
+    border-style: inset;
+    box-shadow: inset 0px 0px 0px 1px #332e2e61;
+    padding: 3px;
+    width: 45%;
     margin-top: 20px;
     margin-bottom: 2px;
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 #current-exp{
@@ -56,8 +62,7 @@ body{
     margin-left: 5px;
     margin-top: 0px;
     height: auto;
-    margin-bottom: 0px;
-    color: black;
+    color: azure
 }
 
 #visor{
