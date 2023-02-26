@@ -25,7 +25,8 @@ body{
     flex-direction: column;
     align-items: center;
     margin-top: 25vh;
-    width: 450px;
+    width: fit-content;
+    padding: 3px;
     min-width: none;
     height: fit-content;
 }
@@ -51,9 +52,7 @@ body{
     box-shadow: inset 0px 0px 0px 1px #332e2e61;
     padding: 3px;
     width: 45%;
-    margin-top: 20px;
-    margin-bottom: 2px;
-    margin-right: 32px;
+    margin: 20px 10px 2px 0px;
 }
 
 #current-exp{
@@ -70,7 +69,7 @@ body{
 }
 
 #visor{
-    width: 380px;
+    width: 295px;
     height: 50px;
     background-color: var(--visor-background);
     color: azure;
@@ -97,7 +96,7 @@ body{
     flex-wrap: wrap-reverse;
     justify-content: space-evenly;
     flex-direction: row-reverse;
-    width: 300px;
+    width: 250px;
     gap: 3px;
     align-self: inherit;
     margin-bottom: 10px;
@@ -105,23 +104,22 @@ body{
 }
 
 #calc-pad-operations{
-    margin-left: 5px;
+    margin-left: -8px;
     width: 60px;
     /* border: 3px solid red; */
     display: flex;
     flex-direction: column-reverse;
-    height: fit-content;
+    height: 250px;
     justify-content: space-evenly;
     align-self: center;
     align-items: center;
-    margin-bottom: 6px;
 }
 
 .number, #equals, #float-point{
     width: 50px;
     height: 50px;
-    margin-left: 8px;
-    margin-right: 8px;
+    margin-left: 6px;
+    margin-right: 6px;
     margin-top: 5px;
 }
 
@@ -136,12 +134,16 @@ body{
     flex-direction: row;
     justify-content: space-evenly;
     /*border: 3px solid violet;*/
-    margin-left: -55px;
+    margin-left: -50px;
     width: 300px;
     height: 35px;
 }
 
 .special-operations{
     height: auto;
-    width: 125px;
+    width: 80px;
+}
+
+#plus{
+    height: 85px;
 }
