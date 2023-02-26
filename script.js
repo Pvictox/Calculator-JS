@@ -6,6 +6,7 @@ const visorCurrentExp = document.querySelector("#visor-cur-exp");
 const clearAllButton = document.querySelector("#clear-all");
 const clearEntryButton = document.querySelector("#clear-entry");
 const floatButton = document.querySelector("#float-point");
+const audioClick = new Audio("./sounds/click.wav");
 
 let firstValue = undefined;
 let lastValue = undefined;
@@ -107,6 +108,7 @@ let calcResult = () =>{
 
 numbersButtons.forEach( (button) => {
     button.addEventListener('click', (e)=>{
+        audioClick.play();
         if (firstValue !== undefined && operator === undefined){
             buildCurrentExp("");
             firstValue = undefined;
@@ -119,6 +121,7 @@ numbersButtons.forEach( (button) => {
 // refatorar depois 
 operators.forEach((button) => {
     button.addEventListener('click', ()=>{
+        audioClick.play();
         if (visorCurrentExp.textContent === "Error"){
             buildCurrentExp("");
         }
@@ -152,6 +155,7 @@ operators.forEach((button) => {
 })
 
 equals.addEventListener('click', ()=>{
+    audioClick.play()
     if (firstValue !== undefined && operator !== undefined){
         lastValue = +calcVisor.textContent;
         calcResult();
@@ -159,14 +163,17 @@ equals.addEventListener('click', ()=>{
 })
 
 clearAllButton.addEventListener('click', ()=>{
+    audioClick.play();
     clearAll();
 })
 
 clearEntryButton.addEventListener('click', () => {
+    audioClick.play()
     calcVisor.textContent = calcVisor.textContent.replace(calcVisor.textContent[calcVisor.textContent.length-1], "");
 })
 
 floatButton.addEventListener('click', ()=>{
+    audioClick.play();
     //Se não tiver nada no visor
     calcVisor.textContent === "" ? calcVisor.textContent= "0." : calcVisor.textContent+=".";
 
