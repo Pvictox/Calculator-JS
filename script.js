@@ -116,7 +116,7 @@ document.addEventListener('keydown', (e)=>{
 })
 
 function numberBuilder(idNumber){
-    if (firstValue !== undefined && operator === undefined){
+    if (firstValue !== undefined && operator === undefined || visorCurrentExp.textContent==="Error"){
         buildCurrentExp("");
         firstValue = undefined;
     }
@@ -132,7 +132,9 @@ numbersButtons.forEach( (button) => {
 })
 
 function updateCalc(operatorValue, operatorText){
-    console.log(firstValue);
+    if (visorCurrentExp.textContent === "Error"){
+        buildCurrentExp("");
+    }
     if (firstValue === undefined && calcVisor.textContent !== ""){
         firstValue = +calcVisor.textContent;
         if (unaryFlag){
@@ -166,9 +168,6 @@ operators.forEach((button) => {
     button.addEventListener('click', ()=>{
         audioClick.currentTime = 0;
         audioClick.play();
-        if (visorCurrentExp.textContent === "Error"){
-            buildCurrentExp("");
-        }
         updateCalc(button.id, button.textContent);
         
     });
