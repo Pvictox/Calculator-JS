@@ -71,28 +71,28 @@ let divide = (value1, value2) => {
 //refatorar depois
 let calcResult = () =>{
     if (firstValue !== undefined && lastValue !== undefined && operator !== undefined){
-        if (operator === "plus"){
+        if (operator === "plus" || operator === "+"){
             buildCurrentExp("");
             buildCurrentExp(plus(firstValue, lastValue));
             firstValue = +visorCurrentExp.textContent;
             lastValue = undefined;
             operator = undefined;
             buildExpVisor("");
-        }else if (operator === "minus"){
+        }else if (operator === "-"){
             buildCurrentExp("");
             buildCurrentExp(minus(firstValue, lastValue));
             firstValue = +visorCurrentExp.textContent;
             lastValue = undefined;
             operator = undefined;
             buildExpVisor("");
-        }else if (operator === "times"){
+        }else if (operator === "*"){
             buildCurrentExp("");
             buildCurrentExp(times(firstValue, lastValue));
             firstValue = +visorCurrentExp.textContent;
             lastValue = undefined;
             operator = undefined;
             buildExpVisor("");
-        }else if (operator === "divide"){
+        }else if (operator === "/"){
             buildCurrentExp("");
             buildCurrentExp(divide(firstValue, lastValue));
             if (divide(firstValue, lastValue) !== "Error"){
@@ -108,76 +108,100 @@ let calcResult = () =>{
 }
 
 document.addEventListener('keydown', (e)=>{
-    buildExpVisor(e.key);
+    console.log(e.key);
+    if (isOperator(e.key)){
+        updateCalc(e.key, e.key);
+    }
+    (e.key !== "Shift") ? numberBuilder(e.key) : "";
 })
+
+function numberBuilder(idNumber){
+    if (firstValue !== undefined && operator === undefined){
+        buildCurrentExp("");
+        firstValue = undefined;
+    }
+    buildExpVisor(idNumber);
+}
 
 numbersButtons.forEach( (button) => {
     button.addEventListener('click',(e)=>{
+        audioClick.currentTime = 0;
         audioClick.play();
-        if (firstValue !== undefined && operator === undefined){
-            buildCurrentExp("");
-            firstValue = undefined;
-        }
-        buildExpVisor(button.id);
+        numberBuilder(button.id);
     })
 })
 
+function updateCalc(operatorValue, operatorText){
+    console.log(firstValue);
+    if (firstValue === undefined && calcVisor.textContent !== ""){
+        firstValue = +calcVisor.textContent;
+        if (unaryFlag){
+            if (visorCurrentExp.textContent[0] === "-") {firstValue *= -1;} 
+            unaryFlag=false;
+        }
+        buildCurrentExp(firstValue);
+        buildCurrentExp(operatorText);
+        buildExpVisor("");
+        operator = operatorValue;
+    }else if (firstValue !== undefined && calcVisor.textContent !==""){
+        lastValue = +calcVisor.textContent; 
+        buildCurrentExp(lastValue);
+        buildCurrentExp(operatorText);
+        calcResult();
+        operator = operatorValue;
+        buildCurrentExp(operatorText);
+    }else if (firstValue !== undefined){
+        operator = operatorValue;
+        buildCurrentExp(operatorText);
+    }else if (firstValue === undefined && calcVisor.textContent === "" && visorCurrentExp.textContent !== "Error"){
+        if (operatorValue === "plus" || operatorValue === "-" || operatorValue === "+"){
+            buildCurrentExp(operatorText);
+            unaryFlag = true;
+        }
+    }
+}
 
 // refatorar depois 
 operators.forEach((button) => {
     button.addEventListener('click', ()=>{
+        audioClick.currentTime = 0;
         audioClick.play();
         if (visorCurrentExp.textContent === "Error"){
             buildCurrentExp("");
         }
-        if (firstValue === undefined && calcVisor.textContent !== ""){
-            firstValue = +calcVisor.textContent;
-            if (unaryFlag){
-                if (visorCurrentExp.textContent[0] === "-") {firstValue *= -1;} 
-                unaryFlag=false;
-            }
-            buildCurrentExp(firstValue);
-            buildCurrentExp(button.textContent);
-            buildExpVisor("");
-            operator = button.id;
-        }else if (firstValue !== undefined && calcVisor.textContent !==""){
-            lastValue = +calcVisor.textContent; 
-            buildCurrentExp(lastValue);
-            buildCurrentExp(button.textContent);
-            calcResult();
-            operator = button.id;
-            buildCurrentExp(button.textContent);
-        }else if (firstValue !== undefined){
-            operator = button.id;
-            buildCurrentExp(button.textContent);
-        }else if (firstValue === undefined && calcVisor.textContent === "" && visorCurrentExp.textContent !== "Error"){
-            if (button.id === "plus" || button.id === "minus"){
-                buildCurrentExp(button.textContent);
-                unaryFlag = true;
-            }
-        }
+        updateCalc(button.id, button.textContent);
+        
     });
 })
 
-equals.addEventListener('click', ()=>{
-    audioClick.play()
+
+function showResult(){
     if (firstValue !== undefined && operator !== undefined){
         lastValue = +calcVisor.textContent;
         calcResult();
     }
+}
+
+equals.addEventListener('click', ()=>{
+    audioClick.currentTime = 0;
+    audioClick.play()
+    showResult();
 })
 
 clearAllButton.addEventListener('click', ()=>{
+    audioClick.currentTime = 0;
     audioClick.play();
     clearAll();
 })
 
 clearEntryButton.addEventListener('click', () => {
+    audioClick.currentTime = 0;
     audioClick.play()
     calcVisor.textContent = calcVisor.textContent.replace(calcVisor.textContent[calcVisor.textContent.length-1], "");
 })
 
 floatButton.addEventListener('click', ()=>{
+    audioClick.currentTime = 0;
     audioClick.play();
     //Se não tiver nada no visor
     calcVisor.textContent === "" ? calcVisor.textContent= "0." : calcVisor.textContent+=".";
