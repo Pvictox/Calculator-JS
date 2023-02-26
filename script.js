@@ -37,7 +37,8 @@ let buildExpVisor = (currentValue) =>{
     }else{
         calcVisor.textContent = currentValue;
     }
-    calcVisor.textContent += currentValue;
+    if (!isNaN(currentValue)) calcVisor.textContent += currentValue;
+    
 }
 
 let clearAll = () =>{
@@ -106,8 +107,12 @@ let calcResult = () =>{
     }
 }
 
+document.addEventListener('keydown', (e)=>{
+    buildExpVisor(e.key);
+})
+
 numbersButtons.forEach( (button) => {
-    button.addEventListener('click', (e)=>{
+    button.addEventListener('click',(e)=>{
         audioClick.play();
         if (firstValue !== undefined && operator === undefined){
             buildCurrentExp("");
