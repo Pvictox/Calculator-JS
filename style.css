@@ -7,6 +7,7 @@
 :root{
     --background-calculator: #272525;
     --visor-background:  rgb(24, 72, 27);
+    --button-color: rgba(13, 13, 13, 0.523);
 }
 
 body{
@@ -19,7 +20,8 @@ body{
 }
 
 #calculator{
-    border: 3px solid red;
+    border: 2px solid rgba(138, 132, 132, 0.884);
+    box-shadow: 0px 1px 2px 0px black;
     background-color: var(--background-calculator);
     display: flex;
     flex-direction: column;
@@ -75,6 +77,7 @@ body{
     color: azure;
     font-size: 25px;
     margin: 2px 10px 5px 10px;
+    text-align: end;
     border: 3px solid black;
 }
 
@@ -96,7 +99,7 @@ body{
     flex-wrap: wrap-reverse;
     justify-content: space-evenly;
     flex-direction: row-reverse;
-    width: 250px;
+    width: 235px;
     gap: 3px;
     align-self: inherit;
     margin-bottom: 10px;
@@ -110,10 +113,12 @@ body{
     display: flex;
     flex-direction: column-reverse;
     height: 250px;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 5px;
     align-self: center;
     align-items: center;
 }
+
 
 .number, #equals, #float-point{
     width: 50px;
@@ -123,10 +128,17 @@ body{
     margin-top: 5px;
 }
 
+.number, #equals, #float-point, .operation{
+    background-color: var(--button-color);
+    color: rgba(223, 220, 220, 0.861);
+    box-shadow: 1px 1px 0px 0px black;
+    font-weight: bolder;
+}
+
 .operation{
     width: 50px;
-    height: 40px;
-
+    border-radius: 0% 0% 15% 15%;
+    height: 45px;
 }
 
 #calc-pad-special{
@@ -141,9 +153,21 @@ body{
 
 .special-operations{
     height: auto;
-    width: 80px;
+    width: 75px;
+    background-color: rgba(177, 38, 38, 0.735);
 }
 
 #plus{
     height: 85px;
+}
+
+
+button:hover,   #float-point:hover, #equals:hover{
+    background-color: rgb(179, 122, 75);
+}
+
+button:active{
+    background-color: var(--button-color);
+    box-shadow: 0px 5px rgb(38, 37, 37);
+    transform: translateY(2px);
 }
