@@ -108,7 +108,8 @@ let calcResult = () =>{
 }
 
 document.addEventListener('keydown', (e)=>{
-    console.log(e.key);
+    /*
+    console.log(e.key);*/
     if (isOperator(e.key)){
         updateCalc(e.key, e.key);
     }
@@ -118,10 +119,10 @@ document.addEventListener('keydown', (e)=>{
     if (e.key === "Backspace"){
         clearLast();
     }
+    (e.key !== "Shift" && e.key !== " ") ? numberBuilder(e.key) : "";
     if (e.key === "Enter"){
         showResult();
     }
-    (e.key !== "Shift" && e.key !== " ") ? numberBuilder(e.key) : "";
 })
 
 function numberBuilder(idNumber){
@@ -185,7 +186,10 @@ operators.forEach((button) => {
 
 function showResult(){
     if (firstValue !== undefined && operator !== undefined){
+        console.log(firstValue)
+        console.log(operator)
         lastValue = +calcVisor.textContent;
+        console.log(lastValue);
         calcResult();
     }
 }
