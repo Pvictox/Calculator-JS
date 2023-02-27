@@ -112,6 +112,12 @@ document.addEventListener('keydown', (e)=>{
     if (isOperator(e.key)){
         updateCalc(e.key, e.key);
     }
+    if (e.key === "Delete"){
+        clearAll();
+    }
+    if (e.key === "Backspace"){
+        clearLast();
+    }
     (e.key !== "Shift") ? numberBuilder(e.key) : "";
 })
 
@@ -193,10 +199,14 @@ clearAllButton.addEventListener('click', ()=>{
     clearAll();
 })
 
+function clearLast(){
+    calcVisor.textContent = calcVisor.textContent.replace(calcVisor.textContent[calcVisor.textContent.length-1], "");
+}
+
 clearEntryButton.addEventListener('click', () => {
     audioClick.currentTime = 0;
     audioClick.play()
-    calcVisor.textContent = calcVisor.textContent.replace(calcVisor.textContent[calcVisor.textContent.length-1], "");
+    clearLast();
 })
 
 floatButton.addEventListener('click', ()=>{
