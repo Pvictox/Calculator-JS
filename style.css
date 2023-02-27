@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -15,6 +17,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
@@ -36,10 +39,12 @@ body{
 #visor-cur-exp, #current-exp-container{
     font-size: 20px;
     text-align: center;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .label-visor{
     background-color:var(--background-calculator);
+    font-size: 15px;
     margin-right: 4px;
     color: azure;
 }
@@ -53,7 +58,7 @@ body{
     border-style: inset;
     box-shadow: inset 0px 0px 0px 1px #332e2e61;
     padding: 3px;
-    width: 45%;
+    width: 55%;
     margin: 20px 10px 2px 0px;
 }
 
@@ -74,6 +79,7 @@ body{
     width: 295px;
     height: 50px;
     background-color: var(--visor-background);
+    font-family: 'Orbitron', sans-serif;
     color: azure;
     font-size: 25px;
     margin: 2px 10px 5px 10px;
@@ -172,3 +178,37 @@ button:active{
     box-shadow: 0px 5px rgb(38, 37, 37);
     transform: translateY(2px);
 }
+
+#content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer{
+    border-radius: 10px;
+    background-color: rgba(250, 246, 246, 0.92);
+    width: 350px;
+    display: flex;
+    align-self: center;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.footer-icon{
+    width: 55px;
+    height: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+    transition: border .2s;
+}
+
+.footer-icon:hover{
+    border: 3px solid rgb(46, 44, 44);
+    border-radius: 50%;
+}
+
