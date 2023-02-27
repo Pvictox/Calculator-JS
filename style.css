@@ -29,7 +29,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 25vh;
+    margin-top: 20vh;
     width: fit-content;
     padding: 3px;
     min-width: none;
