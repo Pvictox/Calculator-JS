@@ -118,7 +118,10 @@ document.addEventListener('keydown', (e)=>{
     if (e.key === "Backspace"){
         clearLast();
     }
-    (e.key !== "Shift") ? numberBuilder(e.key) : "";
+    if (e.key === "Enter"){
+        showResult();
+    }
+    (e.key !== "Shift" && e.key !== " ") ? numberBuilder(e.key) : "";
 })
 
 function numberBuilder(idNumber){
