@@ -136,7 +136,6 @@ let makeOperation = () => {
 
 document.addEventListener('keydown', (e)=>{
     
-    /*console.log(e.key);*/
     if (isOperator(e.key)){
         updateCalc(e.key, e.key);
     }
@@ -151,6 +150,7 @@ document.addEventListener('keydown', (e)=>{
         e.preventDefault();
         showResult();
     }
+    if (e.key === ".") addFloatingPoint();
 })
 
 function numberBuilder(idNumber){
@@ -241,10 +241,12 @@ clearEntryButton.addEventListener('click', () => {
     clearLast();
 })
 
+function addFloatingPoint() {
+    calcVisor.textContent === "" ? calcVisor.textContent= "0." : calcVisor.textContent+=".";
+}
+
 floatButton.addEventListener('click', ()=>{
     audioClick.currentTime = 0;
     audioClick.play();
-    //Se não tiver nada no visor
-    calcVisor.textContent === "" ? calcVisor.textContent= "0." : calcVisor.textContent+=".";
-
+    addFloatingPoint();    
 })
