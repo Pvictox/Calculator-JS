@@ -7,6 +7,7 @@ const clearAllButton = document.querySelector("#clear-all");
 const clearEntryButton = document.querySelector("#clear-entry");
 const floatButton = document.querySelector("#float-point");
 const audioClick = new Audio("./sounds/click.wav");
+const LIMIT_CHAR = 12;
 
 let firstValue = undefined;
 let lastValue = undefined;
@@ -57,6 +58,11 @@ let buildCurrentExp = (value) => {
         visorCurrentExp.textContent += value;
     }else{
         visorCurrentExp.textContent = visorCurrentExp.textContent.replace(visorCurrentExp.textContent[visorCurrentExp.textContent.length-1], value);
+    }
+    if (visorCurrentExp.textContent.length > LIMIT_CHAR){ 
+       let newString = visorCurrentExp.textContent.substring(0, LIMIT_CHAR-1);
+       visorCurrentExp.textContent = newString;
+       visorCurrentExp.textContent += ".."; 
     }
 }
 
@@ -186,10 +192,7 @@ operators.forEach((button) => {
 
 function showResult(){
     if (firstValue !== undefined && operator !== undefined){
-        console.log(firstValue)
-        console.log(operator)
         lastValue = +calcVisor.textContent;
-        console.log(lastValue);
         calcResult();
     }
 }
