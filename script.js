@@ -66,6 +66,13 @@ let buildCurrentExp = (value) => {
     }
 }
 
+const operacoes = {
+    "+": (a,b) => a + b,
+    "plus" : (a,b) => a+b,
+    "-": (a,b) => a-b,
+    "*": (a,b) => a*b,
+    "/": (a,b) => b === 0 ? "Error":a/b, 
+}
 // refatorar depois 
 let plus = (value1, value2) => {return value1+value2}
 let minus = (value1, value2) => {return value1-value2}
@@ -74,42 +81,54 @@ let divide = (value1, value2) => {
     return ( value2 === 0 ? "Error" : value1/value2);
 }
 
+let makeOperation = (currentOperator) => {
+    buildCurrentExp("")
+    console.log(operacoes[currentOperator](firstValue, lastValue));
+    buildCurrentExp(operacoes[currentOperator](firstValue, lastValue));
+    operacoes[currentOperator](firstValue, lastValue) === "Error" ? firstValue=undefined : firstValue = +visorCurrentExp.textContent;
+    lastValue = undefined;
+    operator = undefined;
+    buildExpVisor("");
+
+}
+
 //refatorar depois
 let calcResult = () =>{
     if (firstValue !== undefined && lastValue !== undefined && operator !== undefined){
-        if (operator === "plus" || operator === "+"){
-            buildCurrentExp("");
-            buildCurrentExp(plus(firstValue, lastValue));
-            firstValue = +visorCurrentExp.textContent;
-            lastValue = undefined;
-            operator = undefined;
-            buildExpVisor("");
-        }else if (operator === "-"){
-            buildCurrentExp("");
-            buildCurrentExp(minus(firstValue, lastValue));
-            firstValue = +visorCurrentExp.textContent;
-            lastValue = undefined;
-            operator = undefined;
-            buildExpVisor("");
-        }else if (operator === "*"){
-            buildCurrentExp("");
-            buildCurrentExp(times(firstValue, lastValue));
-            firstValue = +visorCurrentExp.textContent;
-            lastValue = undefined;
-            operator = undefined;
-            buildExpVisor("");
-        }else if (operator === "/"){
-            buildCurrentExp("");
-            buildCurrentExp(divide(firstValue, lastValue));
-            if (divide(firstValue, lastValue) !== "Error"){
-                firstValue = +visorCurrentExp.textContent;
-            }else{
-                firstValue = undefined;
-            }
-            lastValue = undefined;
-            operator = undefined;
-            buildExpVisor("");
-        }
+        makeOperation(operator);
+        // if (operator === "plus" || operator === "+"){
+        //     buildCurrentExp("");
+        //     buildCurrentExp(plus(firstValue, lastValue));
+        //     firstValue = +visorCurrentExp.textContent;
+        //     lastValue = undefined;
+        //     operator = undefined;
+        //     buildExpVisor("");
+        // }else if (operator === "-"){
+        //     buildCurrentExp("");
+        //     buildCurrentExp(minus(firstValue, lastValue));
+        //     firstValue = +visorCurrentExp.textContent;
+        //     lastValue = undefined;
+        //     operator = undefined;
+        //     buildExpVisor("");
+        // }else if (operator === "*"){
+        //     buildCurrentExp("");
+        //     buildCurrentExp(times(firstValue, lastValue));
+        //     firstValue = +visorCurrentExp.textContent;
+        //     lastValue = undefined;
+        //     operator = undefined;
+        //     buildExpVisor("");
+        // }else if (operator === "/"){
+        //     buildCurrentExp("");
+        //     buildCurrentExp(divide(firstValue, lastValue));
+        //     if (divide(firstValue, lastValue) !== "Error"){
+        //         firstValue = +visorCurrentExp.textContent;
+        //     }else{
+        //         firstValue = undefined;
+        //     }
+        //     lastValue = undefined;
+        //     operator = undefined;
+        //     buildExpVisor("");
+        // }
     }
 }
 
