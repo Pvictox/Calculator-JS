@@ -52,6 +52,7 @@ let clearAll = () =>{
 
 let buildCurrentExp = (value) => {
     if (value === ""){
+        console.log("lIMAP")
         visorCurrentExp.textContent = "";
     }
     if (isOperator(visorCurrentExp.textContent[visorCurrentExp.textContent.length-1]) === false){
@@ -74,67 +75,68 @@ const operacoes = {
     "/": (a,b) => b === 0 ? "Error":a/b, 
 }
 // refatorar depois 
-let plus = (value1, value2) => {return value1+value2}
-let minus = (value1, value2) => {return value1-value2}
-let times = (value1, value2) => {return value1 * value2};
-let divide = (value1, value2) => {
-    return ( value2 === 0 ? "Error" : value1/value2);
-}
+// let plus = (value1, value2) => {return value1+value2}
+// let minus = (value1, value2) => {return value1-value2}
+// let times = (value1, value2) => {return value1 * value2};
+// let divide = (value1, value2) => {
+//     return ( value2 === 0 ? "Error" : value1/value2);
+// }
 
-let makeOperation = (currentOperator) => {
-    buildCurrentExp("")
-    console.log(operacoes[currentOperator](firstValue, lastValue));
-    buildCurrentExp(operacoes[currentOperator](firstValue, lastValue));
-    operacoes[currentOperator](firstValue, lastValue) === "Error" ? firstValue=undefined : firstValue = +visorCurrentExp.textContent;
-    lastValue = undefined;
-    operator = undefined;
-    buildExpVisor("");
-
-}
-
-//refatorar depois
-let calcResult = () =>{
+let makeOperation = () => {
     if (firstValue !== undefined && lastValue !== undefined && operator !== undefined){
-        makeOperation(operator);
-        // if (operator === "plus" || operator === "+"){
-        //     buildCurrentExp("");
-        //     buildCurrentExp(plus(firstValue, lastValue));
-        //     firstValue = +visorCurrentExp.textContent;
-        //     lastValue = undefined;
-        //     operator = undefined;
-        //     buildExpVisor("");
-        // }else if (operator === "-"){
-        //     buildCurrentExp("");
-        //     buildCurrentExp(minus(firstValue, lastValue));
-        //     firstValue = +visorCurrentExp.textContent;
-        //     lastValue = undefined;
-        //     operator = undefined;
-        //     buildExpVisor("");
-        // }else if (operator === "*"){
-        //     buildCurrentExp("");
-        //     buildCurrentExp(times(firstValue, lastValue));
-        //     firstValue = +visorCurrentExp.textContent;
-        //     lastValue = undefined;
-        //     operator = undefined;
-        //     buildExpVisor("");
-        // }else if (operator === "/"){
-        //     buildCurrentExp("");
-        //     buildCurrentExp(divide(firstValue, lastValue));
-        //     if (divide(firstValue, lastValue) !== "Error"){
-        //         firstValue = +visorCurrentExp.textContent;
-        //     }else{
-        //         firstValue = undefined;
-        //     }
-        //     lastValue = undefined;
-        //     operator = undefined;
-        //     buildExpVisor("");
-        // }
+        buildCurrentExp("");
+        buildCurrentExp(operacoes[operator](firstValue, lastValue));
+        console.log(operacoes[operator](firstValue, lastValue));
+        operacoes[operator](firstValue, lastValue) === "Error" ? firstValue=undefined : firstValue = +visorCurrentExp.textContent;
+        lastValue = undefined;
+        operator = undefined;
+        buildExpVisor("");
     }
 }
 
+//refatorar depois
+// let makeOperation = () =>{
+    
+//         makeOperation(operator);
+//         // if (operator === "plus" || operator === "+"){
+//         //     buildCurrentExp("");
+//         //     buildCurrentExp(plus(firstValue, lastValue));
+//         //     firstValue = +visorCurrentExp.textContent;
+//         //     lastValue = undefined;
+//         //     operator = undefined;
+//         //     buildExpVisor("");
+//         // }else if (operator === "-"){
+//         //     buildCurrentExp("");
+//         //     buildCurrentExp(minus(firstValue, lastValue));
+//         //     firstValue = +visorCurrentExp.textContent;
+//         //     lastValue = undefined;
+//         //     operator = undefined;
+//         //     buildExpVisor("");
+//         // }else if (operator === "*"){
+//         //     buildCurrentExp("");
+//         //     buildCurrentExp(times(firstValue, lastValue));
+//         //     firstValue = +visorCurrentExp.textContent;
+//         //     lastValue = undefined;
+//         //     operator = undefined;
+//         //     buildExpVisor("");
+//         // }else if (operator === "/"){
+//         //     buildCurrentExp("");
+//         //     buildCurrentExp(divide(firstValue, lastValue));
+//         //     if (divide(firstValue, lastValue) !== "Error"){
+//         //         firstValue = +visorCurrentExp.textContent;
+//         //     }else{
+//         //         firstValue = undefined;
+//         //     }
+//         //     lastValue = undefined;
+//         //     operator = undefined;
+//         //     buildExpVisor("");
+//         // }
+//     }
+// }
+
 document.addEventListener('keydown', (e)=>{
-    /*
-    console.log(e.key);*/
+    
+    /*console.log(e.key);*/
     if (isOperator(e.key)){
         updateCalc(e.key, e.key);
     }
@@ -146,6 +148,7 @@ document.addEventListener('keydown', (e)=>{
     }
     (e.key !== "Shift" && e.key !== " ") ? numberBuilder(e.key) : "";
     if (e.key === "Enter"){
+        e.preventDefault();
         showResult();
     }
 })
@@ -184,7 +187,7 @@ function updateCalc(operatorValue, operatorText){
         lastValue = +calcVisor.textContent; 
         buildCurrentExp(lastValue);
         buildCurrentExp(operatorText);
-        calcResult();
+        makeOperation();
         operator = operatorValue;
         buildCurrentExp(operatorText);
     }else if (firstValue !== undefined){
@@ -212,7 +215,7 @@ operators.forEach((button) => {
 function showResult(){
     if (firstValue !== undefined && operator !== undefined){
         lastValue = +calcVisor.textContent;
-        calcResult();
+        makeOperation();
     }
 }
 
